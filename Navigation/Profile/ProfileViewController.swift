@@ -9,30 +9,32 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let profileHeader = ProfileHeaderView()
+    private lazy var profileHeader: ProfileHeaderView = {
+        let view = ProfileHeaderView()
+        view.frame = self.view.frame
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .lightGray
-        title = "Profile"
-
-        view.addSubview(profileHeader)
+        customizeView()
+        setView()
 
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(tapScreen)
-
     }
 
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        profileHeader.frame = view.frame
+    private func customizeView() {
+        view.backgroundColor = .lightGray
+        title = "Profile"
     }
-    
+
+    private func setView() {
+        view.addSubview(profileHeader)
+    }
 }

@@ -13,7 +13,6 @@ class ProfileHeaderView: UIView {
 
     let profileImage: UIImageView = {
         let image = UIImageView()
-
         image.frame = CGRect(
             origin: .zero,
             size: CGSize(
@@ -24,13 +23,11 @@ class ProfileHeaderView: UIView {
         image.layer.cornerRadius = image.frame.width / 2
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
-
         return image
     }()
 
     let showStatus: UIButton = {
         let button = UIButton()
-
         button.backgroundColor = .blue
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -40,33 +37,27 @@ class ProfileHeaderView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowOpacity = 0.7
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-
         return button
     }()
 
     let profileName: UILabel = {
         let label = UILabel()
-
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.text = "Zhong Xina"
         label.textColor = .black
-
         return label
     }()
 
     let status: UILabel = {
         let label = UILabel()
-
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.text = "Waiting for something..."
         label.textColor = .gray
-
         return label
     }()
 
     let editStatus: UITextField = {
         let textField = UITextField()
-
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textField.textColor = .black
         textField.clearButtonMode = .whileEditing
@@ -75,16 +66,13 @@ class ProfileHeaderView: UIView {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-
         return textField
 
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setupViews()
-
     }
 
     required init?(coder: NSCoder) {
@@ -142,6 +130,5 @@ class ProfileHeaderView: UIView {
             y: Int(status.frame.maxY) + 4,
             width: Int(self.frame.width) - 148,
             height: 40)
-
     }
 }
