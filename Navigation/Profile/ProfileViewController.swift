@@ -7,7 +7,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    //MARK: - Properties
     private let profileHeaderView: ProfileHeaderView = {
         let profile = ProfileHeaderView()
         profile.translatesAutoresizingMaskIntoConstraints = false
@@ -20,14 +20,14 @@ class ProfileViewController: UIViewController {
         button.setTitle("New button", for: .normal)
         return button
     }()
-
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         customizeView()
         layout()
     }
-
+    //MARK: - Methods
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let _ = touches.first {
             view.endEditing(true)
