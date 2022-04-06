@@ -9,7 +9,7 @@ import UIKit
 class ProfileHeaderView: UIView {
 
     private var statusText: String?
-
+    //MARK: - Properties
     private let avatarImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +49,7 @@ class ProfileHeaderView: UIView {
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
+        textField.ident(size: 10)
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
     }()
@@ -67,17 +68,16 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
-
+    //MARK: - Lifecycle
     init() {
         super.init(frame: .zero)
-
         layout()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    //MARK: - Methods
     @objc func buttonPressed() {
         guard let text = statusTextField.text, !text.isEmpty else {
             statusLabel.text = "Waiting for something..."

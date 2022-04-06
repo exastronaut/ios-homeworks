@@ -37,7 +37,6 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         customizeView()
         layout()
     }

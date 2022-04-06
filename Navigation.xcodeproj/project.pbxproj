@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C759180327F39CB2004DB176 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C759180227F39CB2004DB176 /* LogInViewController.swift */; };
+		C759180527F4E5CC004DB176 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C759180427F4E5CC004DB176 /* UITextField+Extension.swift */; };
+		C759180927F6F623004DB176 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C759180827F6F623004DB176 /* UIImage+Extension.swift */; };
+		C759180C27F71CD0004DB176 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C759180B27F71CD0004DB176 /* ViewController.swift */; };
 		C7A62C0627D244A0000CF42B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A62C0527D244A0000CF42B /* AppDelegate.swift */; };
 		C7A62C0F27D244A2000CF42B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A62C0E27D244A2000CF42B /* Assets.xcassets */; };
 		C7A62C1227D244A2000CF42B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A62C1027D244A2000CF42B /* LaunchScreen.storyboard */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C759180227F39CB2004DB176 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		C759180427F4E5CC004DB176 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		C759180827F6F623004DB176 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Navigation/Extension/UIImage+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		C759180B27F71CD0004DB176 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C7A62C0227D244A0000CF42B /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7A62C0527D244A0000CF42B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7A62C0E27D244A2000CF42B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C759180A27F702E9004DB176 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C759180427F4E5CC004DB176 /* UITextField+Extension.swift */,
+				C759180827F6F623004DB176 /* UIImage+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		C7A62BF927D244A0000CF42B = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +83,7 @@
 			children = (
 				C7A62C0527D244A0000CF42B /* AppDelegate.swift */,
 				C7A62C2427D6890E000CF42B /* Post.swift */,
+				C759180A27F702E9004DB176 /* Extension */,
 				C7B9649527DF490D003AD7C1 /* Profile */,
 				C7A62C2127D39917000CF42B /* Controllers */,
 				C7A62C0E27D244A2000CF42B /* Assets.xcassets */,
@@ -82,6 +100,7 @@
 				C7A62C1927D24B03000CF42B /* FeedViewController.swift */,
 				C7A62C1D27D24B39000CF42B /* PostViewController.swift */,
 				C7A62C2227D6139A000CF42B /* InfoViewController.swift */,
+				C759180B27F71CD0004DB176 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -91,6 +110,7 @@
 			children = (
 				C7B9649627DF4958003AD7C1 /* ProfileHeaderView.swift */,
 				C7A62C1B27D24B1C000CF42B /* ProfileViewController.swift */,
+				C759180227F39CB2004DB176 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -165,10 +185,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C759180327F39CB2004DB176 /* LogInViewController.swift in Sources */,
 				C7A62C1E27D24B39000CF42B /* PostViewController.swift in Sources */,
 				C7A62C1C27D24B1C000CF42B /* ProfileViewController.swift in Sources */,
+				C759180927F6F623004DB176 /* UIImage+Extension.swift in Sources */,
 				C7A62C2027D24CE4000CF42B /* MainTabBarController.swift in Sources */,
 				C7A62C1A27D24B03000CF42B /* FeedViewController.swift in Sources */,
+				C759180C27F71CD0004DB176 /* ViewController.swift in Sources */,
+				C759180527F4E5CC004DB176 /* UITextField+Extension.swift in Sources */,
 				C7A62C2327D6139A000CF42B /* InfoViewController.swift in Sources */,
 				C7A62C2527D6890E000CF42B /* Post.swift in Sources */,
 				C7A62C0627D244A0000CF42B /* AppDelegate.swift in Sources */,
