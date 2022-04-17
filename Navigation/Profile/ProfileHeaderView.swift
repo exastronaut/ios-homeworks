@@ -8,8 +8,9 @@ import UIKit
 
 class ProfileHeaderView: UIView {
 
-    private var statusText: String?
     //MARK: - Properties
+    private var statusText: String?
+
     private let avatarImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -50,6 +51,7 @@ class ProfileHeaderView: UIView {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
         textField.ident(size: 10)
+        textField.delegate = self
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         return textField
     }()
@@ -68,15 +70,17 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
+
     //MARK: - Lifecycle
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         layout()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     //MARK: - Methods
     @objc func buttonPressed() {
         guard let text = statusTextField.text, !text.isEmpty else {
@@ -95,13 +99,13 @@ class ProfileHeaderView: UIView {
         [avatarImageView, setStatusButton, fullNameLabel, statusLabel, statusTextField].forEach { addSubview($0) }
 
         NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100),
 
             setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
 
@@ -118,5 +122,12 @@ class ProfileHeaderView: UIView {
             statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -5),
             statusLabel.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor)
         ])
+    }
+}
+
+//MARK: - Extensions
+extension ProfileHeaderView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endEditing(true)
     }
 }

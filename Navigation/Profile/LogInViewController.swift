@@ -164,6 +164,7 @@ class LogInViewController: UIViewController {
     }
 }
 
+//MARK: - Extensions
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
