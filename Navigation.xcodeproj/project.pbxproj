@@ -21,6 +21,9 @@
 		C7A62C2327D6139A000CF42B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A62C2227D6139A000CF42B /* InfoViewController.swift */; };
 		C7A62C2527D6890E000CF42B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A62C2427D6890E000CF42B /* Post.swift */; };
 		C7B9649727DF4958003AD7C1 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B9649627DF4958003AD7C1 /* ProfileHeaderView.swift */; };
+		C7E32E3A2809D9FE007D4481 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E32E392809D9FE007D4481 /* PostModel.swift */; };
+		C7E32E3C280AA8F0007D4481 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E32E3B280AA8F0007D4481 /* PostTableViewCell.swift */; };
+		C7E32E3E280ABAF4007D4481 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E32E3D280ABAF4007D4481 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		C7A62C2227D6139A000CF42B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		C7A62C2427D6890E000CF42B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C7B9649627DF4958003AD7C1 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		C7E32E392809D9FE007D4481 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		C7E32E3B280AA8F0007D4481 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		C7E32E3D280ABAF4007D4481 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			children = (
 				C759180427F4E5CC004DB176 /* UITextField+Extension.swift */,
 				C759180827F6F623004DB176 /* UIImage+Extension.swift */,
+				C7E32E3D280ABAF4007D4481 /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -82,8 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				C7A62C0527D244A0000CF42B /* AppDelegate.swift */,
-				C7A62C2427D6890E000CF42B /* Post.swift */,
 				C759180A27F702E9004DB176 /* Extension */,
+				C7E32E382809D9DB007D4481 /* Model */,
 				C7B9649527DF490D003AD7C1 /* Profile */,
 				C7A62C2127D39917000CF42B /* Controllers */,
 				C7A62C0E27D244A2000CF42B /* Assets.xcassets */,
@@ -108,11 +115,21 @@
 		C7B9649527DF490D003AD7C1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C7E32E3B280AA8F0007D4481 /* PostTableViewCell.swift */,
 				C7B9649627DF4958003AD7C1 /* ProfileHeaderView.swift */,
 				C7A62C1B27D24B1C000CF42B /* ProfileViewController.swift */,
 				C759180227F39CB2004DB176 /* LogInViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		C7E32E382809D9DB007D4481 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7A62C2427D6890E000CF42B /* Post.swift */,
+				C7E32E392809D9FE007D4481 /* PostModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,13 +206,16 @@
 				C7A62C1E27D24B39000CF42B /* PostViewController.swift in Sources */,
 				C7A62C1C27D24B1C000CF42B /* ProfileViewController.swift in Sources */,
 				C759180927F6F623004DB176 /* UIImage+Extension.swift in Sources */,
+				C7E32E3A2809D9FE007D4481 /* PostModel.swift in Sources */,
 				C7A62C2027D24CE4000CF42B /* MainTabBarController.swift in Sources */,
 				C7A62C1A27D24B03000CF42B /* FeedViewController.swift in Sources */,
+				C7E32E3C280AA8F0007D4481 /* PostTableViewCell.swift in Sources */,
 				C759180C27F71CD0004DB176 /* ViewController.swift in Sources */,
 				C759180527F4E5CC004DB176 /* UITextField+Extension.swift in Sources */,
 				C7A62C2327D6139A000CF42B /* InfoViewController.swift in Sources */,
 				C7A62C2527D6890E000CF42B /* Post.swift in Sources */,
 				C7A62C0627D244A0000CF42B /* AppDelegate.swift in Sources */,
+				C7E32E3E280ABAF4007D4481 /* UIView+Extension.swift in Sources */,
 				C7B9649727DF4958003AD7C1 /* ProfileHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
