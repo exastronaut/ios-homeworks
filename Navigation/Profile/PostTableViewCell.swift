@@ -105,5 +105,4 @@ class PostTableViewCell: UITableViewCell {
             views.bottomAnchor.constraint(equalTo: likes.bottomAnchor)
         ])
     }
-    
 }
