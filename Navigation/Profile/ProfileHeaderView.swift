@@ -75,6 +75,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
+        
     }
 
     required init?(coder: NSCoder) {
