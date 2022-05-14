@@ -9,6 +9,8 @@ import UIKit
 class ProfileViewController: UIViewController {
     //MARK: - Properties
     private let posts = PostModel.makeMockModel()
+    private let profileHeader = ProfileHeaderView()
+    private var isAvatarOpen = false
 
     private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -20,11 +22,13 @@ class ProfileViewController: UIViewController {
         return table
     }()
 
+
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         customizeView()
         layout()
+        setupGesture()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,14 +53,14 @@ class ProfileViewController: UIViewController {
     }
 }
 
-//MARK: - Extensions
+//MARK: - UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 { return ProfileHeaderView() }
+        if section == 0 { return profileHeader }
         else { return nil }
     }
 
@@ -66,7 +70,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == 0, !isAvatarOpen {
             let photosViewController = PhotosViewController()
             navigationController?.pushViewController(photosViewController, animated: true)
         }
@@ -74,6 +78,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
 }
 
+//MARK: - UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
@@ -95,3 +100,63 @@ extension ProfileViewController: UITableViewDataSource {
         }
     }
 }
+
+//MARK: - Gestures and Animations
+extension ProfileViewController {
+    private var widthBackView: CGFloat {
+        profileHeader.backView.bounds.width
+    }
+
+    private var heightBackView: CGFloat {
+        profileHeader.backView.bounds.height
+    }
+
+    private func setupGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        profileHeader.avatarImageView.addGestureRecognizer(tapGesture)
+        let closeGesture = UITapGestureRecognizer(target: self, action: #selector(closeAction))
+        profileHeader.closeButton.addGestureRecognizer(closeGesture)
+    }
+
+    @objc private func tapAction() {
+        isAvatarOpen = true
+        UIView.animate(withDuration: 0.5) {
+            self.tabBarController?.tabBar.isHidden = true
+            self.profileHeader.avatarImageView.layer.cornerRadius = 0
+            self.profileHeader.avatarImageView.layer.borderWidth = 0
+            self.profileHeader.widthAvatarImageView.constant = self.widthBackView
+            self.profileHeader.heightAvatarImageView.constant = self.widthBackView
+            self.profileHeader.leadingAvatarImageView.constant = 0
+            self.profileHeader.topAvatarImageView.constant = (self.heightBackView - self.widthBackView) / 3
+            self.profileHeader.layoutIfNeeded()
+            self.profileHeader.avatarImageView.layer.zPosition = 1
+            self.profileHeader.backView.alpha = 0.70
+            self.tableView.isScrollEnabled = false
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.profileHeader.closeButton.alpha = 1
+            }
+        }
+    }
+
+    @objc private func closeAction() {
+        isAvatarOpen = false
+        UIView.animate(withDuration: 0.3) {
+            self.profileHeader.closeButton.alpha = 0
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5) {
+                self.tabBarController?.tabBar.isHidden = false
+                self.profileHeader.avatarImageView.layer.cornerRadius = 50
+                self.profileHeader.avatarImageView.layer.borderWidth = 3
+                self.profileHeader.widthAvatarImageView.constant = 100
+                self.profileHeader.heightAvatarImageView.constant = 100
+                self.profileHeader.leadingAvatarImageView.constant = 16
+                self.profileHeader.topAvatarImageView.constant = 16
+                self.profileHeader.backView.alpha = 0
+                self.profileHeader.layoutIfNeeded()
+                self.tableView.isScrollEnabled = true
+            }
+        }
+    }
+}
+

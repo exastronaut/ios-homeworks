@@ -11,7 +11,7 @@ class ProfileHeaderView: UIView {
     //MARK: - Properties
     private var statusText: String?
 
-    private let avatarImageView: UIImageView = {
+    let avatarImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "avatar")
@@ -19,6 +19,7 @@ class ProfileHeaderView: UIView {
         image.layer.cornerRadius = 50
         image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
+        image.isUserInteractionEnabled = true
         return image
     }()
 
@@ -71,11 +72,33 @@ class ProfileHeaderView: UIView {
         return button
     }()
 
+    let backView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    let closeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.alpha = 0
+        return button
+    }()
+
+    /// avatarImageView constraints
+    var heightAvatarImageView = NSLayoutConstraint()
+    var widthAvatarImageView = NSLayoutConstraint()
+    var topAvatarImageView = NSLayoutConstraint()
+    var leadingAvatarImageView = NSLayoutConstraint()
+    var trailingAvatarImageView = NSLayoutConstraint()
+
     //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
-        
     }
 
     required init?(coder: NSCoder) {
@@ -97,36 +120,48 @@ class ProfileHeaderView: UIView {
     }
 
     private func layout() {
-        [avatarImageView, setStatusButton, fullNameLabel, statusLabel, statusTextField].forEach { addSubview($0) }
+        [avatarImageView, setStatusButton, fullNameLabel, statusLabel, statusTextField, backView, closeButton].forEach { addSubview($0) }
+
+        heightAvatarImageView = avatarImageView.heightAnchor.constraint(equalToConstant: 100)
+        widthAvatarImageView = avatarImageView.widthAnchor.constraint(equalToConstant: 100)
+        topAvatarImageView = avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16)
+        leadingAvatarImageView = avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
+
+        let heightScreen: CGFloat = UIScreen.main.bounds.height
 
         NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 100),
+            backView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backView.heightAnchor.constraint(equalToConstant: heightScreen),
+            backView.topAnchor.constraint(equalTo: topAnchor),
+            backView.leadingAnchor.constraint(equalTo: leadingAnchor),
 
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            closeButton.topAnchor.constraint(equalTo: backView.topAnchor, constant: 8),
+            closeButton.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -8),
+
+            heightAvatarImageView, widthAvatarImageView, topAvatarImageView, leadingAvatarImageView,
+
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-            setStatusButton.leadingAnchor.constraint(equalTo: avatarImageView.leadingAnchor),
+            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
-            fullNameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
+            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            fullNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 138),
+            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
-            statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -5),
-            statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
+            statusTextField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
 
             statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -5),
-            statusLabel.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor)
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 16),
+            statusLabel.trailingAnchor.constraint(equalTo: fullNameLabel.trailingAnchor)
         ])
     }
 }
 
-//MARK: - Extensions
+//MARK: - UITextFieldDelegate
 extension ProfileHeaderView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditing(true)
