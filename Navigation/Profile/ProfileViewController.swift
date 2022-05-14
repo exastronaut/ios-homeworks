@@ -121,6 +121,7 @@ extension ProfileViewController {
     @objc private func tapAction() {
         isAvatarOpen = true
         UIView.animate(withDuration: 0.5) {
+            self.tabBarController?.tabBar.isHidden = true
             self.profileHeader.avatarImageView.layer.cornerRadius = 0
             self.profileHeader.avatarImageView.layer.borderWidth = 0
             self.profileHeader.widthAvatarImageView.constant = self.widthBackView
@@ -144,6 +145,7 @@ extension ProfileViewController {
             self.profileHeader.closeButton.alpha = 0
         } completion: { _ in
             UIView.animate(withDuration: 0.5) {
+                self.tabBarController?.tabBar.isHidden = false
                 self.profileHeader.avatarImageView.layer.cornerRadius = 50
                 self.profileHeader.avatarImageView.layer.borderWidth = 3
                 self.profileHeader.widthAvatarImageView.constant = 100
